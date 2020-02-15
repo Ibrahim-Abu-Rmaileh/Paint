@@ -1,6 +1,7 @@
 
-
+{
 const painter = {};
+
 
 painter.colors = ['black', 'blue', 'red', 'yellow', 'green', 'purple', 'brown', 'orange'];
 painter.currentColor = "black";
@@ -44,6 +45,7 @@ var my_left_menu = document.querySelector('#left-menu');
 var clear_btn=document.querySelector('#clear');
 var edit_size_btn=document.querySelector('#edit_size');
 var save_btn=document.querySelector('#save');
+var my_middle=document.querySelector('#middle');
 
 
 
@@ -94,6 +96,7 @@ painter.initializer = (canvas_height = 500, canvas_width = 500) => {
 
 
         }
+       
     }
 
 
@@ -151,7 +154,7 @@ painter.clear=()=>{
 
 
     location.reload();
-
+    
 
 }
 
@@ -196,11 +199,35 @@ edit_size_btn.addEventListener('click',painter.change_canvas_size)
 
 
 painter.save = () => {
-    localStorage.setItem('savedPaint', JSON.stringify(painter.currentPaint));
+    localStorage.setItem('currentTool', JSON.stringify(painter.currentTool));
+    localStorage.setItem('currentColor', JSON.stringify(painter.currentColor));
+    localStorage.setItem('colors', JSON.stringify(painter.colors));
+    // localStorage.setItem('divs', JSON.stringify(new_Div.innerHTML));
+    // localStorage.setItem('colors', JSON.stringify(my_canvas));
+  	
+    
+    
     alert('Saved!');
 }
 
 save_btn.addEventListener('click',painter.save);
+
+
+
+// var load_btn=document.querySelector('#load');
+
+// painter.load=()=>{
+
+    
+//         const divs = JSON.parse(localStorage.getItem("canvas"));
+//         divs.forEach((div) =>  canvas.appendChild(new DOMParser().parseFromString(div,"text/xml").documentElement));
+      
+      
+// }
+
+
+// load_btn.addEventListener('click',painter.load);
+
 
 }
 
@@ -212,3 +239,6 @@ save_btn.addEventListener('click',painter.save);
 
 
 painter.initializer();
+
+
+}
